@@ -1,0 +1,121 @@
+.card-modal {
+    width: 500px;
+    height: 400px;
+    /* background-color: aquamarine; */
+}
+
+.nav-font {
+    font-size: 30px;
+}
+
+.card {
+    background-color: red;
+}
+
+.cardMod1 {
+    /* background-color: chocolate; */
+    width: 70%;
+}
+
+.cardMod2 {
+    width: 100px;
+    /* background-color: blanchedalmond; */
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
+
+.locationName {
+    font-size: 30px;
+    /* color: sienna; */
+}
+
+.card {
+    height: 250px;
+    width: 29rem;
+}
+
+.size {
+    font-size: 16px;
+}
+
+.time {
+    /* background-color: aqua; */
+    width: auto;
+}
+
+.ci,
+.mint,
+.pop,
+.maxt {
+    width: auto;
+}
+
+.card:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.card:hover .locationName,
+.card:hover .time,
+.card:hover .pop,
+.card:hover .mint,
+.card:hover .ci,
+.card:hover .maxt {
+    color: white;
+}
+
+.locationName {
+    color: blue;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #000;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}

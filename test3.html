@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>樣本</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        .weatherInfo {
+            width: 200px;
+            /* background-color: turquoise; */
+            height: 25px;
+            text-justify: inter-ideograph;
+            text-align: justify;
+        }
+
+        
+        .weatherInfo::after {
+            content: "";
+            display: inline-block;
+            width: 100%;
+            background-color: peru; 
+        } 
+
+        .card {
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="text-center">天氣氣象局</h1>
+    <div class="p-3">
+        <div class="card">
+            <div class="card-body container">
+                <div class="row">
+                    <div class="text-center locationName"></div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-3 time weatherInfo">時間</div>
+                    <div class="col-3 dayTime"></div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-3 weatherInfo">天氣現象</div>
+                    <div class="col-3 weather"></div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-3 weatherInfo">降雨機率</div>
+                    <div class="col-3 rain"></div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-3 weatherInfo">最低溫度</div>
+                    <div class="col-3 minTempure"></div>
+                </div>
+                <div class="row mt-1 ci">
+                    <div class="col-3 weatherInfo">舒適度</div>
+                    <div class="col-3 tempure"></div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-3 weatherInfo">最高溫度</div>
+                    <div class="col-3 maxTempure"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 使用fetch API從API獲取數據
+        fetch(url)
+            .then(response => response.json()) // 當數據接收到後，將其轉換為JSON
+            .then(data => {
+                // 從數據中提取天氣預報
+                const forecasts = data.records.location;
+
+                // 遍歷每個地點的預報
+                forecasts.forEach(forecast => {
+                    const locationName = forecast.locationName;
+                    const weatherElements = forecast.weatherElement;
+
+                    // 提取所需的資訊
+                    const startTime = weatherElements[0].time[0].startTime;
+                    const endTime = weatherElements[0].time[0].endTime;
+                    const ci = weatherElements[3].time[0].parameter.parameterName;
+                    const pop = weatherElements[1].time[0].parameter.parameterName;
+                    const maxT = weatherElements[4].time[0].parameter.parameterName;
+                    const minT = weatherElements[2].time[0].parameter.parameterName;
+
+                    // 創建卡片
+                    const card = `
+                <div class="card" style="width: 23rem;">
+                    <div class="card-body container">
+                        <div class="row">
+                            <div class="text-center locationName">${locationName}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-3 time text-center">時間</div>
+                            <div class="col-3 dayTime">${startTime} - ${endTime}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-3 weatherInfo">舒適度</div>
+                            <div class="col-3 tempure">${ci}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-3 weatherInfo">降雨機率</div>
+                            <div class="col-3 rain">${pop}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-3 weatherInfo">最低溫度</div>
+                            <div class="col-3 minTempure">${minT}</div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-3 weatherInfo">最高溫度</div>
+                            <div class="col-3 maxTempure">${maxT}</div>
+                        </div>
+                    </div>
+                </div>`;
+
+                    // 將卡片插入到 HTML 中（例如插入到具有某個ID的容器中）
+                    document.getElementById("your-container-id").innerHTML += card;
+                });
+            })
+            .catch(error => console.error('錯誤:', error)); // 如果有錯誤，將其記錄到控制台
+
+    </script>
+</body>
+
+</html>
